@@ -18,3 +18,11 @@ const Counter = function(){
 
 export default Counter;
 
+/*const state = useState(0)
+const count = state[0]
+const setCount = state[1]
+
+const a = {
+  b:1
+};
+console.log(a.b)*/
