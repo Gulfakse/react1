@@ -1,5 +1,10 @@
 import React from 'react';
-
+// {id: 1, title: 'JavaScript', body:'Description'},
+//<PostItem post ={post} a={0} key={post.id}/>
+const props = {
+  a:0, 
+  post:  {id: 1, title: 'JavaScript', body:'Description'},
+}
 const PostItem = (props) => {
   
   return(
