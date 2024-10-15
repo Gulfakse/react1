@@ -5,6 +5,7 @@ import './styles/App.css';
 
 import PostList from './component/PostLists';
 import MyButton from './component/UI/button/MyButton';
+import MyInput from './component/UI/input/MyInput';
 
 function App() {
 
