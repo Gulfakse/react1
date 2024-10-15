@@ -2,7 +2,9 @@ import React, {useState} from 'react';
 import Counter from "./component/counter";
 import ClassCounter from './component/class.Counter';
 import './styles/App.css';
-import PostItem from './component/Postitem';
+
+import PostList from './component/PostLists';
+import MyButton from './component/UI/button/MyButton';
 
 function App() {
 
@@ -11,22 +13,27 @@ function App() {
     {id: 2, title: 'JavaScript 2', body:'Description'},
     {id: 3, title: 'JavaScript 3', body:'Description'},
   ])
-posts.map((post) => {
-  console.log(post)
-  console.log(typeof post)
- } )
 
-
+  const [title, setTitle] = useState()
+const addNewPost = (e) =>{
+e.preventDefault()
+}
+{/*как получать данные из управляемого импутп*/}
  
   return (
     <div className="App">
-      <h1 style = {{textAlign: 'center'}}>
-      LIST
-      </h1>
-    {posts.map(post =>
-    <PostItem post ={post} a={0} key={post.id}/>
+      <form>
+        <MyInput 
+        value = {title} 
+        onChange = { e => setTitle(e.target.value)}
+        type="text" 
+        placeholder='название поста'/>
+        <MyInput type="text" placeholder='описание поста'/>
+        <MyButton onClick={addNewPost}>создать пост</MyButton>
 
-    )}
+      </form>
+     <PostList posts={posts} title = "List 1"/>
+    
     </div>
   );
 }
