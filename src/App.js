@@ -17,11 +17,22 @@ function App() {
     setPosts([...posts,newPost])
   }
 
+const removePost = (post) => {
+setPosts(posts.filter(p => p.id !== post.id))
+}
 
   return (
     <div className="App">
       <PostForm create={createPost} />
-     <PostList posts={posts} title = "List 1"/>
+      {posts.length !== 0
+      ? 
+      <PostList remove={removePost} posts={posts} title = "List 1"/>
+    : 
+    <h1 style={{textAlign: 'center'}} > 
+    Posts are not found
+    </h1>
+    }
+    
     
     </div>
   );
