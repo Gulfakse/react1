@@ -6,6 +6,7 @@ import MyButton from './component/UI/button/MyButton';
 import MyInput from './component/UI/input/MyInput';
 import MySelect from './component/UI/select/MySelect';
 import PostFilter from './component/PostFilter';
+import MyModal from './component/UI/MyModal/MyModal';
 
 function App() {
 
@@ -40,6 +41,9 @@ setPosts(posts.filter(p => p.id !== post.id))
 
   return (
     <div className="App">
+      <MyModal>
+        qweertty
+      </MyModal>
       <PostForm create={createPost} />
       <hr style={{margin: '15 px 8'}}/>
       <PostFilter 
