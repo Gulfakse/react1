@@ -5,10 +5,10 @@
   right: 0;
   left: 0;
   display: none;
-  background: rgba(0,0,0,5);
+  background: rgba(0,0,0,0.5);
 }
 
-.myModal.content{
+.myModalContent{
   padding: 25px;
   background: paleturquoise;
   border-radius: 16px;

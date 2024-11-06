@@ -2,11 +2,9 @@ import React, {useState, useMemo} from 'react';
 import './styles/App.css';
 import PostForm from './component/PostForm';
 import PostList from './component/PostLists';
-import MyButton from './component/UI/button/MyButton';
-import MyInput from './component/UI/input/MyInput';
-import MySelect from './component/UI/select/MySelect';
 import PostFilter from './component/PostFilter';
 import MyModal from './component/UI/MyModal/MyModal';
+import MyButton from './component/UI/button/MyButton';
 
 function App() {
 
@@ -18,11 +16,12 @@ function App() {
  
 const [filter, setFilter] = useState ({sort: '', query: ''})
 
+const [modal, setModal] = useState(false);
 
  const sortedPosts = useMemo(() => {
   
   if (filter.sort){
-    return [...posts].sort( (a, b) => a [filter.sort].localeCompare(b[filter.sort]) )
+    return [...posts].sort( (a, b) => a[filter.sort].localeCompare(b[filter.sort]) )
     }
     return posts;
  }, [filter.sort, posts])
@@ -33,6 +32,7 @@ return sortedPosts.filter(post => post.title.toLowerCase().includes(filter.query
  
   const createPost = (newPost) => {
     setPosts([...posts,newPost])
+    setModal(false)
   }
 
 const removePost = (post) => {
@@ -41,11 +41,14 @@ setPosts(posts.filter(p => p.id !== post.id))
 
   return (
     <div className="App">
-      <MyModal>
-        qweertty
-      </MyModal>
+      <MyButton style={{ marginTop: 30}} onClick = {() => setModal(true)} >
+        create user
+      </MyButton>
+      <MyModal visible={modal} setVisible={setModal}>
       <PostForm create={createPost} />
-      <hr style={{margin: '15 px 8'}}/>
+      </MyModal>
+     
+      <hr style={{margin: '15px'}}/>
       <PostFilter 
       filter = {filter} 
       setFilter = {setFilter}
