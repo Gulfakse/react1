@@ -5,7 +5,6 @@ import { TransitionGroup } from 'react-transition-group';
 import { CSSTransition } from 'react-transition-group';
 
 const PostList = ({posts, title, remove}) => {
-
 if(!posts.length){
   return(
     <h1 style={{textAlign: 'centr'}}>
@@ -24,9 +23,9 @@ if(!posts.length){
     <CSSTransition
     key={post.id}
     timeout={500}
-    className="post"
+    classNames="post"
     >
-    <PostItem remove={remove} number = {index + 1} post ={post}/>
+      <PostItem remove={remove} number = {index + 1} post ={post}/>
 </CSSTransition>
    )}
    </TransitionGroup>
