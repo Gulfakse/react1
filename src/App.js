@@ -22,6 +22,7 @@ const sortedAndSearchedPosts = usePosts(posts, filter.sort, filter.query);
 const [fetchPosts, isPostsLoading, postError] = useFetching( async() => {
   const response = await PostService.getAll(limit, page);
   setPosts(response.data)
+ 
   console.log(response.headers['x-total-count'])
   setTotalCount(response.headers['x-total-count'])
 })

@@ -8,7 +8,7 @@ export default class PostService{//об'єкт
           _page: page
         }
       })
-      return response.data;
+      return response//.data;
    
   }
 }
