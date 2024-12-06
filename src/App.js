@@ -31,7 +31,6 @@ useEffect(()=> {
 fetchPosts()
 }, [])
 
- 
   const createPost = (newPost) => {
     setPosts([...posts,newPost])
     setModal(false)
