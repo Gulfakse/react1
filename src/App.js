@@ -8,14 +8,23 @@ import MyButton from './component/UI/button/MyButton';
 import {usePosts} from './hooks/usePosts';
 import Loader from './component/UI/Loader/Loader';
 import PostService from './API/PostService';
+import { useFetching } from './hooks/userFetching';
 
 function App() {
 
   const [posts, setPosts] = useState([]);
 const [filter, setFilter] = useState ({sort: '', query: ''})
 const [modal, setModal] = useState(false);
+const [totalCount, setTotalCount] = useState(0);
+const [limit, setLimit] = useState(10);
+const [page, setPage] = useState(1);
 const sortedAndSearchedPosts = usePosts(posts, filter.sort, filter.query);
-const[isPostsLoading, setIsPostsLoading] = useState(false);
+const [fetchPosts, isPostsLoading, postError] = useFetching( async() => {
+  const response = await PostService.getAll(limit, page);
+  setPosts(response.data)
+  console.log(response.headers['x-total-count'])
+  setTotalCount(response.headers['x-total-count'])
+})
 
 useEffect(()=> {
 fetchPosts()
@@ -26,16 +35,6 @@ fetchPosts()
     setPosts([...posts,newPost])
     setModal(false)
   }
-  
-    async function fetchPosts() {
-      setIsPostsLoading(true);
-      setTimeout(async() => {
-        const posts = await PostService.getAll();
-        setPosts(posts)
-        setIsPostsLoading(false);
-      }, 1000)
-  
-   }
 
 const removePost = (post) => {
 setPosts(posts.filter(p => p.id !== post.id))
@@ -56,8 +55,12 @@ setPosts(posts.filter(p => p.id !== post.id))
       filter = {filter} 
       setFilter = {setFilter}
       />
+       {!!postError &&
+         <h1>ERROR {postError}</h1>
+       }
+
       {isPostsLoading
-       ? <div style={{display:'flex', justifyContent: 'center'}} ><Loader/></div>
+       ? <div style={{display:'flex', justifyContent: 'center', marginTop: 50}} ><Loader/></div>
        : <PostList remove={removePost} posts={sortedAndSearchedPosts} title = "List 1"/>
 
        }
