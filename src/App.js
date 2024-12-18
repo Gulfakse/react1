@@ -5,6 +5,7 @@ import About from './pages/About';
 import Posts from "./pages/Posts"
 import Navbar from './component/UI/Navbar/Navbar';
 import Error from './pages/Error';
+import PostIdPage from './pages/PostIdPage';
 
 function App() {
 return(
@@ -13,8 +14,8 @@ return(
 
   <Routes>
     <Route path="/about" element= {<About/>}/>
-   
-      <Route path="/posts" element={<Posts/>}/>
+    <Route exact path="/posts/:id" element={<PostIdPage/>}/>
+      <Route exact path="/posts" element={<Posts/>}/>
       <Route path="/error" element={<Error/>}/>
       <Route path="*" element={<Navigate to="/error" replace/>}/>
     </Routes>
